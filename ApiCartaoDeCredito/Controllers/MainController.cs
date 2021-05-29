@@ -26,11 +26,14 @@ namespace ApiCartaoDeCredito.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<CreditCard>>> GetCreditCards(string email)
         {
+            if (!DataHelper.IsValidEmail(email))
+                return BadRequest();
 
             List<CreditCard> ccList = await _context.CreditCards.Where(cc => cc.Person.Email == email).OrderBy(cc => cc.DateOfCreation).ToListAsync();
 
             return ccList;
         }
+
 
     }
 }

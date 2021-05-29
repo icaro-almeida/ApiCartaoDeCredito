@@ -27,8 +27,12 @@ namespace ApiCartaoDeCredito.Data
                     new Person { PersonId = 2, Email = "b@gmail.com" }
                 );
 
+            var seedCreditCard = DataHelper.GenerateCreditCard(1);
+            seedCreditCard.CreditCardId = 1;
+
             modelBuilder.Entity<CreditCard>()
                .HasData(
+                    seedCreditCard,
                     new CreditCard
                     {
                         CreditCardId = 2,
